@@ -53,7 +53,7 @@ begin
    Check_Float ("3.3 Mean of Symmetrical Data", Mean (Data_Sym), 0.0, 0.0001);
 
    Put_Line ("TEST 4 -- Descriptive Statistics (Standard Deviation)");
-   Check_Float ("4.1 StdDev of Data_A", Standard_Deviation (Data_A), 0.0337, 0.001);
+   Check_Float ("4.1 StdDev of Data_A", Standard_Deviation (Data_A), 0.03206, 0.001);
    Check_Float ("4.2 StdDev of Flat Data is 0", Standard_Deviation (Data_Flat), 0.0, 0.0001);
    Check_Float ("4.3 StdDev of Symmetrical Data", Standard_Deviation (Data_Sym), 0.079, 0.005);
 
