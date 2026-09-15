@@ -61,7 +61,7 @@ package body Financial_Risk_Modeling is
       --  Uses the Abramowitz and Stegun rational approximation (26.2.23)
       --  for the upper tail of the standard normal distribution.
       Tail : constant Rate := 1.0 - P;
-      T    : constant Rate := Rate (Math.Sqrt (Long_Float (-2.0 * Math.Log (Long_Float (Tail)))));
+      T    : constant Rate := Rate (Math.Sqrt (-2.0 * Math.Log (Long_Float (Tail))));
       
       C0   : constant Rate := 2.515517;
       C1   : constant Rate := 0.802853;
@@ -124,7 +124,8 @@ package body Financial_Risk_Modeling is
       Normalized : Return_Array (1 .. Returns'Length);
       Tail_Prob  : constant Rate := 1.0 - Confidence;
       Position   : constant Rate := Rate (Returns'Length) * Tail_Prob;
-      Count      : constant Integer := Integer (Rate'Floor (Position));
+      --  Add a tiny epsilon to handle floating point truncation of exact numbers (e.g. 1.999999999999999)
+      Count      : constant Integer := Integer (Rate'Floor (Position + 1.0E-8));
       Sum        : Rate := 0.0;
    begin
       if Returns'Length = 0 then
